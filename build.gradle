@@ -51,6 +51,7 @@ sonar {
 
 tasks.named('test') {
     useJUnitPlatform()
+    systemProperty "spring.profiles.active", "test"
 }
 
 jacocoTestReport {

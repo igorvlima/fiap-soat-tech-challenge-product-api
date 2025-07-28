@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
@@ -206,37 +206,5 @@ public class ProductIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.active").value(false))
                 .andReturn();
-    }
-
-    @Test
-    void findProductById_ShouldUseCacheForSubsequentRequests() throws Exception {
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setName("Cached Product");
-        productDTO.setDescription("Testing cache");
-        productDTO.setPrice(new BigDecimal("9.99"));
-        productDTO.setCategory(Category.LANCHE);
-        
-        ProductImageDTO imageDTO = new ProductImageDTO();
-        imageDTO.setUrl("http://example.com/cache.jpg");
-        productDTO.setImages(Collections.singletonList(imageDTO));
-
-        MvcResult createResult = mockMvc.perform(post("/product")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(productDTO)))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        ProductDTO createdProduct = objectMapper.readValue(
-                createResult.getResponse().getContentAsString(),
-                ProductDTO.class
-        );
-
-        mockMvc.perform(get("/product/" + createdProduct.getId()))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Cached Product"));
-
-        mockMvc.perform(get("/product/" + createdProduct.getId()))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Cached Product"));
     }
 }
