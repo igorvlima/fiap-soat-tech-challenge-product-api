@@ -37,10 +37,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      ##############################
-      # 🔬 Testes com H2 (profile test)
-      ##############################
-      - name: Run tests with H2 (profile: test)
+      - name: Run tests with H2
         run: ./gradlew clean build jacocoTestReport -Dspring.profiles.active=test
 
       - name: Build and analyze with SonarQube
