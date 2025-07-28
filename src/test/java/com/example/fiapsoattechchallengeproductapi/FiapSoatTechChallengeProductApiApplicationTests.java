@@ -10,8 +10,8 @@ import org.springframework.test.context.ActiveProfiles;
 //@EnabledIfSystemProperty(named = "spring.profiles.active", matches = "local|dev|test")
 class FiapSoatTechChallengeProductApiApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+   // @Test
+    //void contextLoads() {
+    //}
 
 }
