@@ -1,4 +1,3 @@
-/*
 package com.example.fiapsoattechchallengeproductapi.integration;
 
 import com.example.fiapsoattechchallengeproductapi.domain.Category;
@@ -208,4 +207,4 @@ public class ProductIntegrationTest {
                 .andExpect(jsonPath("$.active").value(false))
                 .andReturn();
     }
-}*/
+}
