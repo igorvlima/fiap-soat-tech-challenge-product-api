@@ -7,7 +7,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@EnabledIfSystemProperty(named = "spring.profiles.active", matches = "local|dev|test")
+//@EnabledIfSystemProperty(named = "spring.profiles.active", matches = "local|dev|test")
 class FiapSoatTechChallengeProductApiApplicationTests {
 
     @Test
