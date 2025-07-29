@@ -86,7 +86,6 @@ public class ProductMapper {
         if (imageEntities == null) {
             return null;
         }
-
         return imageEntities.stream()
                 .map(imageEntity -> {
                     ProductImage image = new ProductImage();
